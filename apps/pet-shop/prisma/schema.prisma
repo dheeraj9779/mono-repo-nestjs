@@ -1,0 +1,54 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Product {
+  id            String      @id @default(uuid())
+  name          String
+  description   String
+  price         Float
+  image         String
+  stripePriceId String
+  isFeatured    Boolean     @default(false)
+  orderItems    OrderItem[] // One product can appear in many order items
+  createdAt     DateTime    @default(now())
+  updateAt      DateTime    @updatedAt
+}
+
+
+model Order {
+  id           String      @id @default(uuid())
+  userId       String?
+  status       OrderStatus @default(PENDING)
+  totalAmount  Float
+  paymentId    String?
+  items        OrderItem[] // One order has many items
+  createdAt    DateTime    @default(now())
+  updateAt     DateTime    @updatedAt
+}
+
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String   // FK to Order.id
+  productId String   // FK to Product.id
+  quantity  Int
+  price     Float
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+}
+
+
+enum OrderStatus {
+  PENDING
+  STARTED_DELIVERY
+  DELIVERED
+}
