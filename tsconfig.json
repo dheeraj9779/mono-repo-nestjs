@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/pet-shop"
+    },
+    {
+      "path": "./apps/pet-shop-web-e2e"
     }
   ]
 }

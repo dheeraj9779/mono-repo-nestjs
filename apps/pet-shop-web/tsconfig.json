@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-     "target": "es2022",
+    "target": "es2022",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -13,14 +13,14 @@
     "declaration": false,
     "moduleResolution": "bundler",
     "module": "esnext",
-    "lib": [
-      "es2022",
-      "dom"
-    ]
+    "lib": ["es2022", "dom"]
   },
   "files": [],
   "include": [],
   "references": [
+    {
+      "path": "../pet-shop"
+    },
     {
       "path": "./tsconfig.editor.json"
     },

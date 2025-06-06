@@ -1,0 +1,15 @@
+<pre>
+    @if(productsStore.loading()) {
+        <p>Loading...</p>
+    } @else if(productsStore.error()) {
+        <p>Error: {{productsStore.error()}}</p>
+    } @else if(productsStore.products().length){
+        <ul>
+            @for (product of productsStore.products(); track product.id) {
+                <li>{{product | json}}</li>
+            }
+        </ul>
+    } @else {
+        <p>No products found.</p>
+    }
+</pre>
