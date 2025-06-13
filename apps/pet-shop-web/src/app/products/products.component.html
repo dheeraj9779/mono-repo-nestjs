@@ -1,15 +1,26 @@
-<pre>
+<div class="container mx-auto px-4">
+    <div class="mb-4">
+        <input type="text" class="input input-bordered w-full max-w-xs"
+            placeholder="Search products..." [(ngModel)]="searchTerm" (ngModelChange)="searchOProduct(searchTerm)"/>
+    </div>
     @if(productsStore.loading()) {
         <p>Loading...</p>
     } @else if(productsStore.error()) {
-        <p>Error: {{productsStore.error()}}</p>
+        <div class="alert alert-error">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Error: {{productsStore.error()}}</span>
+        </div>
     } @else if(productsStore.products().length){
-        <ul>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
             @for (product of productsStore.products(); track product.id) {
-                <li>{{product | json}}</li>
+               
+                <app-product-card [product]="product" (addToCart)="cartStore.addToCart($event)"/>
             }
-        </ul>
+        </div>
     } @else {
         <p>No products found.</p>
-    }
-</pre>
+    }  
+</div>

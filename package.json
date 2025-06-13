@@ -76,6 +76,7 @@
     "@nestjs/common": "^11.1.2",
     "@nestjs/core": "^11.1.2",
     "@nestjs/graphql": "^13.1.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.1.2",
     "@ngrx/signals": "^19.2.1",
     "apollo-angular": "^10.0.3",
@@ -84,6 +85,7 @@
     "graphql": "^16.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
+    "stripe": "^18.2.1",
     "zone.js": "~0.15.0"
   }
 }
